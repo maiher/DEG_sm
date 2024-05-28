@@ -1,0 +1,27 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+fastp        1
+total        1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon May 27 14:52:44 2024]
+localrule fastp:
+    input: myData/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1_001_50k_fastq.gz, myData/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2_001_50k_fastq.gz
+    output: results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.html, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.json
+    log: logs/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.log
+    jobid: 0
+    reason: Missing output files: results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1.qc.fq.gz
+    wildcards: sample=0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002
+    resources: tmpdir=/tmp
+
+[Mon May 27 14:52:44 2024]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: .snakemake/log/2024-05-27T145244.034793.snakemake.log

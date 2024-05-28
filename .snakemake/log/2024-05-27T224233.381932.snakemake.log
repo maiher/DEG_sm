@@ -1,0 +1,105 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+all          1
+fastp        5
+total        6
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon May 27 22:42:33 2024]
+localrule fastp:
+    input: myData/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R1_001_50k_fastq.gz, myData/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R2_001_50k_fastq.gz
+    output: results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.html, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.json
+    log: results/logs/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.log
+    jobid: 3
+    reason: Missing output files: results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.html, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.json
+    wildcards: sample=0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002
+    resources: tmpdir=/tmp
+
+[Mon May 27 22:42:34 2024]
+Finished job 3.
+1 of 6 steps (17%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon May 27 22:42:34 2024]
+localrule fastp:
+    input: myData/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1_001_50k_fastq.gz, myData/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2_001_50k_fastq.gz
+    output: results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.html, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.json
+    log: results/logs/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.log
+    jobid: 2
+    reason: Missing output files: results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.json, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.html
+    wildcards: sample=0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002
+    resources: tmpdir=/tmp
+
+[Mon May 27 22:42:34 2024]
+Finished job 2.
+2 of 6 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon May 27 22:42:34 2024]
+localrule fastp:
+    input: myData/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1_001_50k_fastq.gz, myData/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2_001_50k_fastq.gz
+    output: results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.html, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.json
+    log: results/logs/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.log
+    jobid: 5
+    reason: Missing output files: results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.html, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.json, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2.qc.fq.gz
+    wildcards: sample=0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002
+    resources: tmpdir=/tmp
+
+[Mon May 27 22:42:35 2024]
+Finished job 5.
+3 of 6 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon May 27 22:42:35 2024]
+localrule fastp:
+    input: myData/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R1_001_50k_fastq.gz, myData/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R2_001_50k_fastq.gz
+    output: results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.html, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.json
+    log: results/logs/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.log
+    jobid: 4
+    reason: Missing output files: results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.html, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.json
+    wildcards: sample=0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002
+    resources: tmpdir=/tmp
+
+[Mon May 27 22:42:35 2024]
+Finished job 4.
+4 of 6 steps (67%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon May 27 22:42:35 2024]
+localrule fastp:
+    input: myData/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R1_001_50k_fastq.gz, myData/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R2_001_50k_fastq.gz
+    output: results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.html, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.json
+    log: results/logs/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.log
+    jobid: 1
+    reason: Missing output files: results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.html, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.json, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R2.qc.fq.gz
+    wildcards: sample=0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002
+    resources: tmpdir=/tmp
+
+[Mon May 27 22:42:36 2024]
+Finished job 1.
+5 of 6 steps (83%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Mon May 27 22:42:36 2024]
+localrule all:
+    input: results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.html, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.html, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.html, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.html, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.html, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.json, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.json, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.json, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.json, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.json
+    jobid: 0
+    reason: Input files updated by another job: results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.json, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002.fastp.html, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.json, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.html, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002.fastp.json, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.html, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.json, results/fastp/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002.fastp.html, results/fastp/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1.qc.fq.gz, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2.qc.fq.gz, results/fastp/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002.fastp.html, results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002.fastp.json
+    resources: tmpdir=/tmp
+
+[Mon May 27 22:42:36 2024]
+Finished job 0.
+6 of 6 steps (100%) done
+Complete log: .snakemake/log/2024-05-27T224233.381932.snakemake.log

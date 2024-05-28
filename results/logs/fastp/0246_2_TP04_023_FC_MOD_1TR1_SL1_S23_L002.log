@@ -1,0 +1,55 @@
+[22:54:15] start to load data of read1 
+[22:54:15] start to load data of read2 
+[22:54:15] Read1: loading completed with 21 packs 
+[22:54:15] Read2: loading completed with 21 packs 
+[22:54:15] thread 2 data processing completed 
+[22:54:15] thread 2 finished 
+[22:54:15] thread 3 data processing completed 
+[22:54:15] thread 3 finished 
+[22:54:15] thread 1 data processing completed 
+[22:54:15] thread 1 finished 
+[22:54:15] results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1.qc.fq.gz writer finished 
+[22:54:15] results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2.qc.fq.gz writer finished 
+[22:54:15] start to generate reports
+ 
+Read1 before filtering:
+total reads: 20000
+total bases: 3180000
+Q20 bases: 3102191(97.5532%)
+Q30 bases: 2974926(93.5511%)
+
+Read2 before filtering:
+total reads: 20000
+total bases: 3180000
+Q20 bases: 3079409(96.8368%)
+Q30 bases: 2919762(91.8164%)
+
+Read1 after filtering:
+total reads: 19869
+total bases: 2867084
+Q20 bases: 2809029(97.9751%)
+Q30 bases: 2699457(94.1534%)
+
+Read2 after filtering:
+total reads: 19869
+total bases: 2867404
+Q20 bases: 2792340(97.3822%)
+Q30 bases: 2658842(92.7265%)
+
+Filtering result:
+reads passed filter: 39738
+reads failed due to low quality: 260
+reads failed due to too many N: 0
+reads failed due to too short: 2
+reads with adapter trimmed: 18653
+bases trimmed due to adapters: 578733
+
+Duplication rate: 0.035%
+
+Insert size peak (evaluated by paired-end reads): 126
+
+JSON report: fastp.json
+HTML report: fastp.html
+
+fastp -i myData/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1_001_50k_fastq.gz -o results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1.qc.fq.gz -I myData/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2_001_50k_fastq.gz -O results/fastp/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2.qc.fq.gz --adapter_sequence=TCAGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3 -5 -G -V 
+fastp v0.23.4, time used: 0 seconds

@@ -1,0 +1,215 @@
+---
+title: "RNAseq - SAMHD1 mouseGL261 Round2 - DESeq2 preprocessing"
+author: Maike
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+---
+
+**conda environment: conda activate R-4.2**
+
+
+Set rmd options:
+```{r setup1}
+library(knitr)
+library(rmarkdown)
+knitr::opts_chunk$set(
+  #collapse == TRUE,
+  fig.width = 8,
+  fig.height = 6
+)
+```
+
+
+
+Load packages:
+```{r load_packages, warning=FALSE}
+# problem with tidyverse, now fine
+#install.packages("tidyverse")
+
+# load packages
+suppressPackageStartupMessages({
+  library(DESeq2)
+  library(stringr)
+  library(apeglm)
+  # pca:
+  library (limma)
+  library(ggplot2)
+  library(RColorBrewer)
+  library(viridis)
+  # circles:
+  library(tidyverse)
+  library(ggforce)
+  # etc
+  library(scales)
+  library(dplyr)
+})
+```
+
+
+# Data import
+
+*Define output directory & load data:
+
+*Import cts: from featureCounts output!
+
+*Import metadata: manual input csv
+
+This part will give a strange error. Ignore, just repeat this block an carry on.
+
+
+```{r load_data}
+# '/data2/240409_RKoenig_mouseGL261_round2/240411_featureCount/mouseGL261_readCounts_norm.csv'"), sep="\t", dec = ".", header=TRUE, row.names = 'Geneid')
+ctsTot <- read.table(pipe("cut --complement -f2 '/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_featureCount/mouseGL261_readCounts_norm.csv'"), sep="\t", dec = ".", header=TRUE, row.names = 'Geneid')
+
+#/data2/240409_RKoenig_mouseGL261_round2/240409_RNAseq_mice_samples.csv'
+metaFile <- '/home/AD/hermi/sm_tutorial/BYOC/myData/240409_RNAseq_mice_samples.csv'
+coldataTot <- read.table(metaFile, sep="\t", dec = ".", header=TRUE)
+```
+
+
+# Prep count table
+
+*remove spaces and '-'
+
+*keep raw counts only
+
+```{r prep count table}
+# sample names: colnames(ctsTot): currently MedGen.LIB.ID
+colnames(ctsTot) <- str_replace(colnames(ctsTot), "-", "_")
+colnames(ctsTot) <- str_replace(colnames(ctsTot), " ", "_")
+# feature names: rownames(ctsTot): leave alone.
+#rownames(ctsTot) <- str_replace(rownames(ctsTot), "-", "_")
+#rownames(ctsTot) <- str_replace(rownames(ctsTot), " ", "_")
+
+# keep raw values only:
+#   get lists of colnames without matching queries:
+#   'negate=TRUE' selects non-matching strings only!
+keep <- str_subset(colnames(ctsTot), pattern='TPM_', negate=TRUE)
+keep <- str_subset(keep, pattern='RPKM_', negate=TRUE)
+print(keep)
+# filter:
+ctsTot <- ctsTot[, keep]
+identical(keep, colnames(ctsTot))
+```
+
+
+# Prep metadata table:
+
+*remove spaces and '-'
+
+*make coldataTotID match colnames(ctsTot):
+
+```{r prep coldata}
+# remove spaces and '-':
+coldataTot <- coldataTot %>%
+  mutate_all(str_replace_all, "-", "_") %>%
+  mutate_all(str_replace_all, " ", "_")
+print(colnames(coldataTot))
+
+# make ID match ctsTot:
+coldataTot$MedGen_ID_ed <- paste0('X', coldataTot$MedGen.LIB.ID)
+#coldataTot$MedGen_ID_ed
+#colnames(ctsTot)
+coldataTot$MedGen_ID_ed <- str_replace(coldataTot$MedGen_ID_ed, "_SL1", "")
+coldataTot$MedGen_ID_ed
+#print(coldataTot$MedGen_ID_ed)
+```
+
+
+# Check correspondence cts & coldata:
+
+```{r check correspondence}
+# check:
+identical(coldataTot$MedGen_ID_ed, colnames(ctsTot))
+#[1] FALSE
+setdiff(coldataTot$MedGen_ID_ed, colnames(ctsTot))
+#[1] "X0246_2_TP04_005_FC_MOD_1TR1"
+
+# order both df by MedGenId
+coldataTot <- coldataTot[order(coldataTot$MedGen_ID_ed), ]
+ctsTot <- ctsTot[, order(colnames(ctsTot))]
+#colnames(ctsTot)
+
+# or any sample not in counts table
+keep <- colnames(ctsTot)
+rownames(coldataTot) <- coldataTot$MedGen_ID_ed
+coldataTot <- coldataTot[keep, ]
+# check:
+identical(coldataTot$MedGen_ID_ed, colnames(ctsTot))
+#[1] TRUE
+
+# list samples kept:
+colnames(coldataTot)
+coldataTot$Customer.ID
+# ok
+
+# Set row/column names
+# use SampleNames(with batch), not MedGenIds: uniqie identifiers
+rownames(coldataTot) <- coldataTot$Customer.ID
+colnames(ctsTot) <- coldataTot$Customer.ID
+
+# add lables column:
+coldataTot$sLabel <- str_replace(coldataTot$Customer.ID, 'GL261_', '')
+coldataTot$sLabel <- str_replace(coldataTot$sLabel, '_Batch_1', '_Batch1')
+coldataTot$sLabel <- str_replace(coldataTot$sLabel, '_Batch1', '')
+coldataTot$sLabel
+```
+
+
+
+
+# Prep dds input:
+
+*Factorize: Reference lvl first, but here anything is fine: lavels may be adjusted later.
+
+```{r prep dds}
+#colnames(coldataTot)
+
+unique(coldataTot$group)
+coldataTot$group <- factor(coldataTot$group, levels = c('WT', 'Off_target_control', 'SAMHD1_KO') )
+unique(coldataTot$group)
+
+```
+
+
+# Get dds object:
+
+*set design & get matrix for DESeq2:
+
+  variable of interest last, variable to account for (remove) first!
+ 
+*for PCA: design doesn't matter:
+
+  plotted are transformed readcounts, DGE is not conidered for DGE, ie, L2FC, design does matter!!!
+  
+  design = ~ donor + strain: correct for donor, test for DEG between strains
+
+```{r get dds}
+dds <- DESeqDataSetFromMatrix(countData = ctsTot,
+                              colData = coldataTot,
+                              design = ~ group)
+dds
+```
+
+
+# Save dds:
+
+```{r save dds}
+outFile <- '240526_rawDds.rds'
+saveRDS(dds, file = outFile)
+# restore:
+#dds <- readRDS(outFile)
+```
+
+
+# Get session info:
+
+```{r session info}
+sessionInfo()
+```
+
+
+
+
+
+
+

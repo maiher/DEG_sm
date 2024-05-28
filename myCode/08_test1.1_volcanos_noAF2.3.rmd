@@ -1,0 +1,366 @@
+---
+title: "Volcano plots - SAMHD1 mouseGL261 Round2 - Test1.1: off_target_control vs. SAMHD1_KO vs. WT without sample GL261_AF_2_3_Batch1"
+author: Maike
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+editor_options: 
+  chunk_output_type: inline
+---
+
+**conda environment: conda activate R-4.2**
+
+
+```{r setup1}
+library(knitr)
+library(rmarkdown)
+knitr::opts_chunk$set(
+  #collapse == TRUE,
+  fig.width = 8,
+  fig.height = 6
+)
+```
+
+Load packages:
+```{r load_packages, warning=FALSE}
+# problem with tidyverse, now fine
+#install.packages("tidyverse")
+
+# load packages
+suppressPackageStartupMessages({
+library(dplyr)
+library(pathview)
+library( "stringr" )
+library( "ggplot2" )
+library( "RColorBrewer" )
+library( "EnhancedVolcano" )
+library(data.table)
+library(gridExtra)
+library(grid)
+library(cowplot)
+})
+```
+
+
+# functions
+
+* added hallmark genes (Rice et al. 2013)
+
+```{r functions}
+# functions:
+# -------------
+# -------------
+get_rawDF <- function(resFile){
+  # BEWARE OF THE COLUMNNAMES!!!!
+  # input file = DESeq2 results
+  # !!! import DGE results table, 
+  # !!! filter, order:  keep l2FC, padj, pval, gene name
+  res <- read.table(resFile, sep="\t", dec = ".", header=TRUE, na.strings = 'NA')
+  res$SYMBOL <- res$X
+  
+  # make gene names row names unless this breaks something
+  rownames(res) <- res$SYMBOL
+  
+  lfcCols <- str_subset(colnames(res), pattern='log2FoldChange')
+  paCols <- str_subset(colnames(res), pattern='padj')
+  pCols <- str_subset(colnames(res), pattern='pvalue')
+  #print(pCols)
+  keepLFC <- c(lfcCols, paCols, pCols, 'SYMBOL')
+  # df <- df[rows, columns]
+  res_ed <- res[, keepLFC]
+  return(res_ed)
+}
+
+get_conDf <- function(res_ed, contrast){
+  # BEWARE OF THE COLUMNNAMES!!!! 
+  #   order is set in get_rawDF: l2FC, padj, pval, gene name
+  # automatically pick contrast & default columns (l2FC , padj) then rename columns
+  keepCols <- c('SYMBOL', contrast)
+  keepPat <- paste(keepCols, collapse = '|')
+  keep <- grep(keepPat, colnames(res_ed))
+  conDf <- res_ed[, keep]
+  # rename columns
+  colNames <- c('log2FoldChange',
+                 'padj',
+                 'del1',
+                 'del2')
+  colnames(conDf) <- colNames
+  # for volcanoplot: filter and rename again
+  #   not very slick, but whatever
+  keep <- c("log2FoldChange", "padj")
+  conDf <- conDf[, keep]
+  return(conDf)
+}
+
+make_GeneCounts <- function(VolPlot, colList) {
+  # get gene counts each category
+  # --------------------
+  # '-log10 p' is roughly providing the exponent-1 used in scientific notation 
+  #   e.g. p = 0.000045 = 4,5*(10⁻5); -log10 p = 4.3 (= close to 4)
+  # ------------------------------------------------------
+  build <- ggplot_build(VolPlot)
+  build_data <- as.data.frame(build$data[1])
+  # 1. ns but l2fc low
+  CountNsLo <- nrow(subset(build_data, colour == colList[1]))
+  # 2. ns & l2fc high
+  CountNsHi <- nrow(subset(build_data, colour == colList[2]))
+  # 3. sig & l2fc low
+  CountSiLo <- nrow(subset(build_data, colour == colList[3]))
+  # 4. sig & l2fc high
+  CountSiHi <- nrow(subset(build_data, colour == colList[4]))
+  gCounts <- c(CountNsLo, CountNsHi, CountSiLo, CountSiHi)
+  print(paste('plot-based total gene counts:', sum(gCounts)))
+  return(gCounts)  
+}
+
+make_volPlot <- function(res, L2FCTH, yMax, legLabs) {
+  # plot area, legend = gene counts
+  volPlot <- EnhancedVolcano(res,
+                             lab = rownames(res),
+                             x = 'log2FoldChange',
+                             y = 'padj',
+                             # remove all titles
+                             title = '',
+                             subtitle = '',
+                             caption = '',
+                             legendLabels = legLabs,
+                             legendDropLevels = FALSE,
+                             ylab = bquote(~-Log[10]~italic(padjust)),
+                             ylim = c(0, yMax),
+                             xlim = c(-10, 10),
+                             pCutoff = 0.05,
+                             FCcutoff = L2FCTH,
+                             pointSize = 3.0,
+                             
+                             # GENE SYMBOLS HERE!!! 
+                             ## IMPORTANT: case sensitive!!!
+                             #selectLab = '',
+                             selectLab = c('Usp18', 'Ifi44', 'Oasl1', 'Rsad2', 'Samhd1'),
+                             #selectLab = c('IFI27', 'IFI44L', 'ISG15', 'IFIT1', 'RSAD2', 'SIGLEC1'),
+                             drawConnectors = TRUE,
+                             labSize = 6.0,
+                             gridlines.major = FALSE,
+                             gridlines.minor = FALSE,
+                             col =  c('grey',"#66C2A5", "#8DA0CB", "#E78AC3", "#A6D854", "#FC8D62" )) +
+    #selectLab = c('')) +
+    # set legend title
+    guides(color = guide_legend(title = paste(nrow(res), 'genes'))) +
+    theme(# make area square 
+      aspect.ratio = 1,
+      # adjust legend: location, title, outline
+      legend.position = c(0.2, 0.8),
+      legend.title = element_text(),
+      legend.background = element_rect(colour = 'black', fill = 'white', linetype='solid', linewidth = 0.5),
+      # control plot margins:
+      plot.title = element_blank(),
+      plot.subtitle = element_blank(),
+      plot.caption = element_blank(),
+      plot.margin = margin(0,0,0,0, 'cm'))
+  # remove legend
+  #legend.position = 'none')
+  print(volPlot)
+} 
+
+make_legPlot <- function(res, L2FCTH, legLabs) {
+  # plot for descriptive legend:
+  volPlot <- EnhancedVolcano(res,
+                             lab = rownames(res),
+                             x = 'log2FoldChange',
+                             y = 'padj',
+                             ylim = c(0, 100),
+                             xlim = c(-10, 10),
+                             # remove some titles
+                             title = '',
+                             subtitle = '',
+                             #caption = '',                             
+                             # high cutoff - to get all legend items
+                             pCutoff = 0.10,
+                             FCcutoff = L2FCTH,
+                             pointSize = 3.0,
+                             labSize = 6.0,
+                             gridlines.major = FALSE,
+                             gridlines.minor = FALSE,
+                             legendLabels = legLabs,
+                             col =  c('grey',"#66C2A5", "#8DA0CB", "#E78AC3", "#A6D854", "#FC8D62" ),
+                             #legendPosition = 'bottom')
+                             legendPosition = 'right')
+  #theme(legend.background = element_rect(colour = 'black', fill = 'grey', linetype='solid', linewidth = 0.5))
+  print(volPlot)
+}
+
+```
+
+
+# plot settings: colors etc.
+
+```{r volcano settings}
+dummyLabs <- c(1, 2, 3, 4)
+myColors <- c('grey',"#66C2A5", "#8DA0CB", "#E78AC3", "#A6D854", "#FC8D62" )
+legLabs=c('n.s. & low L2FC', 'n.s. & L2FC > 1', 'p <= 0.05 & low L2FC', 'p <= 0.05 & L2FC > 1')
+```
+
+
+# set contrasts and input files
+
+* input files were generated with
+/data2/240409_RKoenig_mouseGL261_round2/240411_DESeq2/240411_test1.1_DESeq2_WTvsKOvsCtrl_noAF2.3.rmd*
+
+* "cons"" must be the actual contrast Ids used in the csv header fields!!! Juste take it from file name.
+
+```{r input settings}
+conLabs <-  c('Off target control vs. WT',
+              'SAMHD1 KO vs. WT',
+              'SAMHD1 KO vs. Off target control')
+
+cons <-  c('Off_target_control_vs_WT',
+           'SAMHD1_KO_vs_WT',
+           'SAMHD1_KO_vs_Off_target_control')
+
+#conFiles <- c('/data2/240409_RKoenig_mouseGL261_round2/240411_DESeq2/240411_Test1.1_DESeq2_Off_target_control_vs_WT.csv',
+#              '/data2/240409_RKoenig_mouseGL261_round2/240411_DESeq2/240411_Test1.1_DESeq2_SAMHD1_KO_vs_WT.csv',
+#              '/data2/240409_RKoenig_mouseGL261_round2/240411_DESeq2/240411_Test1.1_DESeq2_SAMHD1_KO_vs_Off_target_control.csv')
+conFiles <- c('/home/AD/hermi/sm_tutorial/BYOC/testrun/DESeq2/240526_Test1.1_DESeq2_Off_target_control_vs_WT.csv',
+              '/home/AD/hermi/sm_tutorial/BYOC/testrun/DESeq2/240526_Test1.1_DESeq2_SAMHD1_KO_vs_WT.csv',
+              '/home/AD/hermi/sm_tutorial/BYOC/testrun/DESeq2/240526_Test1.1_DESeq2_SAMHD1_KO_vs_Off_target_control.csv')
+
+```
+
+
+# plot:
+
+EnhancedVolcano tries to label all genes passing the tresholds
+
+here: pCutoff = 0.05, FCcutoff = 1
+
+It labes only as many genes as to be still readable
+
+Order of Graphs is messed up in Rstudio preview but fine in html output
+
+Check yMax!!!
+
+```{r volcano loop}
+dummyList <-list()
+maxY <- 100
+
+yMaxList <- vector()
+plotList <- list()
+
+# all:
+for(i in 1:length(cons)) {
+  # get raw df:
+  inFile <- conFiles[i]
+  res_tab <- get_rawDF(inFile)
+  # gene names: res_tab$SYMBOL
+  
+  # set contrast and get DF contrast, L2FC + padj only:
+  con <- cons[i]
+  print(paste('plotting', con))
+  vol_df <- get_conDf(res_tab, con)
+  
+  # pval - yAxis range:
+  vol_df$negl10 <- -(log10(vol_df$padj))
+  yRange <- c(min(vol_df$negl10, na.rm = TRUE), max(vol_df$negl10, na.rm = TRUE))
+  ymax <- yRange[2]
+  print(paste(con, 'yMax:', ymax))
+  
+  # get gene counts & percentages per category
+  dummyPlot <- make_volPlot(vol_df, 1, maxY, dummyLabs)
+  gCountsRaw <- make_GeneCounts(dummyPlot, myColors)
+  gCountsPerc <- paste(round((gCountsRaw / nrow(vol_df) * 100), 1), '%')
+  gCounts <- paste0(gCountsRaw, ' (', gCountsPerc, ')')
+  # plot; legend = gene counts
+  vPlot_p1 <- make_volPlot(vol_df, 1, maxY, gCountsPerc)
+  # adjust x axis limits:
+  #print(paste0(conLabs[i], '\n'))
+  vPlot_p1 <- vPlot_p1 + xlim(-10, 10) +
+    labs(title = paste0(conLabs[i], '\n')) +
+    theme(plot.title = element_text(),
+          # legend to the right:
+          legend.position=c(0.9, 0.8),
+          plot.margin = margin(0.2,0,0,0, 'cm'))
+  print(vPlot_p1)
+  # check whether legend covers dots:
+  print(vPlot_p1 + theme(legend.position='none'))
+  # append to lists:
+  yMaxList <- c(yMaxList, ymax)
+  plotList[[i]] <- vPlot_p1
+}
+```
+
+
+
+```{r check loop results}
+# check whether all dots are included (bc yaxis limit)
+# all:
+#for(i in 1:length(cons)) {
+#  con <- cons[i]
+#  print(con)
+#  vPlot_p1 <- 0
+#  vPlot_p1 <- plotList[[i]]
+#  # print wo legend:
+#  print(vPlot_p1 + theme(legend.position='none'))
+#  # print with legend:
+#  print(vPlot_p1)  
+#}
+```
+
+
+
+
+```{r legend loop}
+# --------------------------------
+# plot; legend = categories (only once!!)
+# --------------------------------
+leg <- make_legPlot(vol_df, 1, legLabs) +
+  theme(legend.text = element_text(size = 10),
+        legend.position = c(0.5, 1.2))
+  #guides(fill=guide_legend(nrow=2, byrow=TRUE)) #+
+  #theme(legend.margin = unit(-3, 'cm'))
+leg <- get_legend(leg)
+# legend to grid:
+leg <- plot_grid(NULL, leg, ncol=1)
+# legend to grob:
+leg <- as_grob(leg)
+# display leg:
+grid.draw(leg)
+
+```
+
+
+```{r save plot}
+# test:
+id=1
+
+foot <- "no batch effect present; sample AF_2_3 removed"
+grid.arrange(plotList[[i]], leg , nrow = 1, widths = c(10, 4),
+             bottom = textGrob(foot, 
+                               gp = gpar(fontsize = 9),
+                               hjust = 1,
+                               y=1,
+                               x = 0.9))
+
+# loop:
+for(i in 1:length(cons)) {
+  plotOut <- paste0('240411_Test1.1_volcano_l2FCTH1_', cons[i], '.pdf')
+  print(plotOut)
+  cairo_pdf(filename = plotOut,
+            width = 8, 
+            height = 7, 
+            pointsize = 12)
+  grid.arrange(plotList[[i]], leg , nrow = 1, widths = c(10, 4),
+               bottom = textGrob(foot,
+                  gp = gpar(fontsize = 9),
+                               hjust = 1,
+                               y = 1,
+                               x = 0.9))
+  dev.off()
+}
+```
+
+
+
+
+get session info:
+``` {r session info}
+sessionInfo()
+```
+
+

@@ -1,0 +1,2 @@
+home/AD/hermi/sm_tutorial/BYOC/myData/0246_2_TP04_020_FC_NOR_1TR1_SL1_S20_L002_R2_001_50k_fastq.gz
+home/AD/hermi/sm_tutorial/BYOC/myData/0246_2_TP04_022_FC_MOD_1TR1_SL1_S22_L002_R2_001_50k_fastq.gz

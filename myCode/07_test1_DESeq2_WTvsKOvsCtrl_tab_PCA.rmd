@@ -1,0 +1,301 @@
+---
+title: "DEG & PCA - SAMHD1 mouseGL261 Round2 - Test1: off_target_control vs. SAMHD1_KO vs. WT"
+author: Maike
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+editor_options: 
+  chunk_output_type: inline
+---
+
+
+**conda environment: conda activate R-4.2cpFix**
+
+
+```{r setup1}
+library(knitr)
+library(rmarkdown)
+knitr::opts_chunk$set(
+  #collapse == TRUE,
+  fig.width = 8,
+  fig.height = 6
+)
+```
+
+Load packages:
+```{r load_packages, warning=FALSE}
+# problem with tidyverse, now fine
+#install.packages("tidyverse")
+
+# load packages
+suppressPackageStartupMessages({
+  library(DESeq2)
+  library(stringr)
+  library(apeglm)
+  # pca:
+  library (limma)
+  library(ggplot2)
+  library(RColorBrewer)
+  library(viridis)
+  # circles:
+  library(tidyverse)
+  library(ggforce)
+  # etc
+  library(scales)
+  library(dplyr)
+  library(xlsx)
+})
+```
+
+
+# Define output directory & load data:
+**input from 
+/data2/240409_RKoenig_mouseGL261_round2/240411_DESeq2/240411_DESeq2_preprocessing.rmd**
+
+dds with raw read counts of all samples
+
+```{r load_data}
+# setup:
+inFile <- '/data2/240409_RKoenig_mouseGL261_round2/240411_DESeq2/240411_rawDds.rds'
+dds <- readRDS(inFile)
+dim(dds)
+```
+
+
+## TEST1: Off_target_control (n=3) vs. SAMHD1_KO (n=3) vs. WT (n=1)
+
+# Prep dds input: Factorize: done in preprocessing
+
+Reference lvl first! = WT!
+
+*order group
+
+
+# update dds & deseq2:
+
+* not necessary
+
+
+# Apply read count filter
+
+theoretically unneccessary
+
+* set prefilter for included genes to min no of reads (depends...)
+
+* in min no of samples (usually number of samples in smallest group)
+
+* here: min 1 sample with at least 5 reads (there are groups with n=1)
+
+```{r readcount filter dds}
+smallestGroupSize <- 1
+keep <- rowSums(counts(dds) >= 5) >= smallestGroupSize 
+# apply filter:
+dds <- dds[keep, ]
+dim(dds)
+```
+
+
+# PCA
+
+Run DESeq2 for PCA: simple design is fine, doesn't matter
+
+PCA is based on raw counts!
+
+* DESeq2 on dds
+
+* vst on dds
+```{r DESeq2 vst}
+dds <- DESeq(dds)
+#get Ids:
+resultsNames(dds)
+
+# transform for PCA
+vsd <- vst(dds, blind=FALSE)
+vsd
+# check vsd data:
+#head(assay(vsd))
+```
+
+
+# plot PCA
+
+* get raw PCA
+
+```{r PCA}
+colnames(dds@colData)
+# include metadata of interest:
+pca <- plotPCA(vsd, intgroup=c("sLabel", 
+                               "group"), returnData = FALSE)
+print(pca)
+```
+
+* get PCA metadata
+
+```{r PCA metadata}
+# pca data frame:
+#pca$data
+# pca labels
+pca$labels
+xTitle <- pca$labels[[2]]
+yTitle <- pca$labels[[1]]
+# col:
+myFills <- scales::viridis_pal()(3)
+#show_col(myFills)
+# save dimensions as text:
+geneNo <- as.character(dim(dds)[1])
+
+```
+
+
+* ggplot DESeq2 plotPCA plot
+
+```{r ggplot PCA}
+pTitle <- "PCA GL261 SAMHD1 - Test 1: Off target control vs. KO vs WT"
+pFoot <- paste0(c("\nno batch effect present",
+                  "\nprefiltering applied:  min 5 reads/gene in min 1 sample",
+                  "\nretained features: ", geneNo), collapse='')
+pFoot
+pcaPlot <- 
+  ggplot(data = pca$data, aes(x=PC1, y=PC2, group = group, label=sLabel)) + 
+  #geom_point(aes(color = batch, shape = mutation), size = 2, stroke=2) +
+  geom_point(aes(color = group.1, shape = group.1), size = 3, stroke=2) +
+  # nudge moves label; 
+  # h/vjust are for aligning text in box: left/right/center/top/bottom!
+  #geom_text(angle=45) + # don't nudge prefiltered data! it's too much
+  geom_text(nudge_y = 0.6, nudge_x = 0, hjust = 0.2, vjust = 0, size = 3, color = 'grey25') + #, check_overlap = TRUE removes labels!
+    #geom_label(nudge_y = 1, nudge_x = 15)
+  scale_color_manual(values = myFills) +
+  # preserve aspect ratio: 1 unit on x is as long as 1 unit on y
+  coord_fixed() +
+  #lims(y=c(-0.2, 0.2)) + 
+  labs(title = pTitle,
+       #subtitle = subTitle,
+       caption = pFoot,
+       x = xTitle, y = yTitle) +
+  theme_bw() +
+  theme(
+    # remove grid:
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank(),
+    # remove background:
+    panel.background = element_blank(),
+    # control legend spacing:
+    legend.key.size = unit(0.8, 'cm'))
+print(pcaPlot)
+```
+
+# Save PCA to pdf
+```{r save PCA}
+
+#getwd()
+pcaOut <- '240411_Test1_PCA_CtrlvsKOvsWT.pdf'
+# the aspect ratio is preserved automatically! It might seem a bit of but that is an illusion!!!
+cairo_pdf(filename = pcaOut,
+          width = 12, 
+          height = 6, 
+          pointsize = 12)
+print(pcaPlot)
+dev.off()
+```
+
+
+
+
+# DE analysis tables
+
+3-wise comparison vs WT
+
+```{r contrast MAP function}
+# get Ids:
+resultsNames(dds)
+length(resultsNames(dds))
+
+get_contrastMAP_tab <- function(dds, idx){
+  # specify contrast
+  # get apeglm MAP values
+  # edit result: data frame, columnnames
+  IDs_dds <- resultsNames(dds)
+  print(paste0('contrasts: ', paste(IDs_dds, collapse='; ')))
+  id <- IDs_dds[idx]
+  print(paste0('now computing ', id))
+  # get MAP & keep df for output table:
+  res <- lfcShrink(dds, coef=id)
+  res <- as.data.frame(res)
+  # edit colnames for output table: APPLY AFTER PLOTTING!!!
+  colnames(res) <- paste(id, colnames(res), sep='_')
+  return(res)
+}
+```
+
+
+3-wise comparison vs Off_target_control
+
+* relevel dds
+
+* new test
+
+```{r get last contrast}
+# relevel
+dds$group <- relevel(dds$group, 'Off_target_control')
+unique(dds$group)
+dds2 <- nbinomWaldTest(dds)
+# takes a while, but less than from scratch.
+resultsNames(dds2)
+```
+
+# get MAP values
+
+*The last contrasts results are not based on the same distribution as the other two. Shrinking is affected by the reference sample choice!*
+
+The difference is, however, small.
+
+```{r get contrasts}
+con5 <- get_contrastMAP_tab(dds, 2)
+con6 <- get_contrastMAP_tab(dds, 3)
+con7 <- get_contrastMAP_tab(dds2, 3)
+```
+
+# save MAP tables
+
+```{r save MAP values}
+
+prefix='240411_Test1_DESeq2_'
+
+idx <- 2
+con <- con5
+ddstab <- dds
+baseName <- paste0(c(prefix, resultsNames(ddstab)[idx]), collapse = '' )
+baseName <- str_replace(baseName, '_group', '')
+baseName
+#   col.names=NA, row.names=TRUE) avoids columnnames starting in first field (above genenames):
+write.table(con, file=paste0(baseName, '.csv'), sep='\t', col.names=NA, row.names=TRUE)
+# xlsx output
+write.xlsx(con, file=paste0(baseName, '.xlsx'))
+
+idx <- 3
+con <- con6
+ddstab <- dds
+baseName <- paste0(c(prefix, resultsNames(ddstab)[idx]), collapse = '' )
+baseName <- str_replace(baseName, '_group', '')
+baseName
+#   col.names=NA, row.names=TRUE) avoids columnnames starting in first field (above genenames):
+write.table(con, file=paste0(baseName, '.csv'), sep='\t', col.names=NA, row.names=TRUE)
+# xlsx output
+write.xlsx(con, file=paste0(baseName, '.xlsx'))
+
+idx <- 3
+con <- con7
+ddstab <- dds2
+baseName <- paste0(c(prefix, resultsNames(ddstab)[idx]), collapse = '' )
+baseName <- str_replace(baseName, '_group', '')
+baseName
+#   col.names=NA, row.names=TRUE) avoids columnnames starting in first field (above genenames):
+write.table(con, file=paste0(baseName, '.csv'), sep='\t', col.names=NA, row.names=TRUE)
+# xlsx output
+write.xlsx(con, file=paste0(baseName, '.xlsx'))
+```
+
+get session info:
+```{r session info}
+sessionInfo()
+```
+
+

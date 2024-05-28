@@ -1,0 +1,6 @@
+{
+    "SBATCH_DEFAULTS": "mail-type=END,FAIL mail-user=maike.herrmann@pei.de --exclude=SV-HPC-06,SV-HPC-04 --output=./slurm_logs/rule_{rule}/{rule}.{wildcards}_%j.out",
+    "CLUSTER_NAME": "",
+    "CLUSTER_CONFIG": ""
+}
+

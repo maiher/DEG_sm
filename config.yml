@@ -1,0 +1,7 @@
+sample_list: "samples.txt"
+
+black_list: "blacklist.txt"
+
+
+# fastp options
+fastp_params: "--adapter_sequence=TCAGATCGGAAGAGCACACGTCTGAACTCCAGTCAC -3 -5 -G -V"

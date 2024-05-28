@@ -1,0 +1,100 @@
+
+        ==========     _____ _    _ ____  _____  ______          _____  
+        =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \ 
+          =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+            ====      \___ \| |  | |  _ <|  _  /|  __|   / /\ \ | |  | |
+              ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+        ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+	  v2.0.6
+
+//========================== featureCounts setting ===========================\\
+||                                                                            ||
+||             Input files : 7 BAM files                                      ||
+||                                                                            ||
+||                           0246_2_TP04_020_FC_NOR_1TR1_SL1_S20Aligned.s ... ||
+||                           0246_2_TP04_021_FC_MOD_1TR1_SL1_S21Aligned.s ... ||
+||                           0246_2_TP04_022_FC_MOD_1TR1_SL1_S22Aligned.s ... ||
+||                           0246_2_TP04_023_FC_MOD_1TR1_SL1_S23Aligned.s ... ||
+||                           0246_2_TP04_024_FC_MOD_1TR1_SL1_S24Aligned.s ... ||
+||                           0246_2_TP04_025_FC_MOD_1TR1_SL1_S25Aligned.s ... ||
+||                           0246_2_TP04_026_FC_MOD_1TR1_SL1_S26Aligned.s ... ||
+||                                                                            ||
+||             Output file : mouseGL261_readCounts.csv                        ||
+||                 Summary : mouseGL261_readCounts.csv.summary                ||
+||              Paired-end : yes                                              ||
+||        Count read pairs : no                                               ||
+||              Annotation : GCF_000001635.27_GRCm39_genomic.gtf.gz (GTF)     ||
+||      Dir for temp files : ./                                               ||
+||                                                                            ||
+||                 Threads : 1                                                ||
+||                   Level : meta-feature level                               ||
+||      Multimapping reads : not counted                                      ||
+|| Multi-overlapping reads : not counted                                      ||
+||   Min overlapping bases : 1                                                ||
+||                                                                            ||
+\\============================================================================//
+
+//================================= Running ==================================\\
+||                                                                            ||
+|| Load annotation file GCF_000001635.27_GRCm39_genomic.gtf.gz ...            ||
+||    Features : 1566857                                                      ||
+||    Meta-features : 40879                                                   ||
+||    Chromosomes/contigs : 42                                                ||
+||                                                                            ||
+|| Process BAM file 0246_2_TP04_020_FC_NOR_1TR1_SL1_S20Aligned.sortedByCo ... ||
+||    Paired-end reads are included.                                          ||
+||    The reads are assigned on the single-end mode.                          ||
+||    Total alignments : 48232                                                ||
+||    Successfully assigned alignments : 31671 (65.7%)                        ||
+||    Running time : 0.00 minutes                                             ||
+||                                                                            ||
+|| Process BAM file 0246_2_TP04_021_FC_MOD_1TR1_SL1_S21Aligned.sortedByCo ... ||
+||    Paired-end reads are included.                                          ||
+||    The reads are assigned on the single-end mode.                          ||
+||    Total alignments : 51386                                                ||
+||    Successfully assigned alignments : 31168 (60.7%)                        ||
+||    Running time : 0.00 minutes                                             ||
+||                                                                            ||
+|| Process BAM file 0246_2_TP04_022_FC_MOD_1TR1_SL1_S22Aligned.sortedByCo ... ||
+||    Paired-end reads are included.                                          ||
+||    The reads are assigned on the single-end mode.                          ||
+||    Total alignments : 48804                                                ||
+||    Successfully assigned alignments : 31981 (65.5%)                        ||
+||    Running time : 0.00 minutes                                             ||
+||                                                                            ||
+|| Process BAM file 0246_2_TP04_023_FC_MOD_1TR1_SL1_S23Aligned.sortedByCo ... ||
+||    Paired-end reads are included.                                          ||
+||    The reads are assigned on the single-end mode.                          ||
+||    Total alignments : 49696                                                ||
+||    Successfully assigned alignments : 31542 (63.5%)                        ||
+||    Running time : 0.00 minutes                                             ||
+||                                                                            ||
+|| Process BAM file 0246_2_TP04_024_FC_MOD_1TR1_SL1_S24Aligned.sortedByCo ... ||
+||    Paired-end reads are included.                                          ||
+||    The reads are assigned on the single-end mode.                          ||
+||    Total alignments : 47817                                                ||
+||    Successfully assigned alignments : 31488 (65.9%)                        ||
+||    Running time : 0.00 minutes                                             ||
+||                                                                            ||
+|| Process BAM file 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25Aligned.sortedByCo ... ||
+||    Paired-end reads are included.                                          ||
+||    The reads are assigned on the single-end mode.                          ||
+||    Total alignments : 48064                                                ||
+||    Successfully assigned alignments : 30629 (63.7%)                        ||
+||    Running time : 0.00 minutes                                             ||
+||                                                                            ||
+|| Process BAM file 0246_2_TP04_026_FC_MOD_1TR1_SL1_S26Aligned.sortedByCo ... ||
+||    Paired-end reads are included.                                          ||
+||    The reads are assigned on the single-end mode.                          ||
+||    Total alignments : 48843                                                ||
+||    Successfully assigned alignments : 31435 (64.4%)                        ||
+||    Running time : 0.00 minutes                                             ||
+||                                                                            ||
+|| Write the final count table.                                               ||
+|| Write the read assignment summary.                                         ||
+||                                                                            ||
+|| Summary of counting results can be found in file "mouseGL261_readCounts.c  ||
+|| sv.summary"                                                                ||
+||                                                                            ||
+\\============================================================================//
+

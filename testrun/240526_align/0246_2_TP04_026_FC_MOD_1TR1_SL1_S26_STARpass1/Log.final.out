@@ -1,0 +1,37 @@
+                                 Started job on |	May 26 20:09:43
+                             Started mapping on |	May 26 20:09:51
+                                    Finished on |	May 26 20:09:54
+       Mapping speed, Million of reads per hour |	23.82
+
+                          Number of input reads |	19853
+                      Average input read length |	289
+                                    UNIQUE READS:
+                   Uniquely mapped reads number |	18080
+                        Uniquely mapped reads % |	91.07%
+                          Average mapped length |	289.22
+                       Number of splices: Total |	20628
+            Number of splices: Annotated (sjdb) |	20487
+                       Number of splices: GT/AG |	20375
+                       Number of splices: GC/AG |	184
+                       Number of splices: AT/AC |	18
+               Number of splices: Non-canonical |	51
+                      Mismatch rate per base, % |	0.28%
+                         Deletion rate per base |	0.01%
+                        Deletion average length |	1.86
+                        Insertion rate per base |	0.01%
+                       Insertion average length |	2.00
+                             MULTI-MAPPING READS:
+        Number of reads mapped to multiple loci |	1264
+             % of reads mapped to multiple loci |	6.37%
+        Number of reads mapped to too many loci |	141
+             % of reads mapped to too many loci |	0.71%
+                                  UNMAPPED READS:
+  Number of reads unmapped: too many mismatches |	0
+       % of reads unmapped: too many mismatches |	0.00%
+            Number of reads unmapped: too short |	235
+                 % of reads unmapped: too short |	1.18%
+                Number of reads unmapped: other |	133
+                     % of reads unmapped: other |	0.67%
+                                  CHIMERIC READS:
+                       Number of chimeric reads |	0
+                            % of chimeric reads |	0.00%

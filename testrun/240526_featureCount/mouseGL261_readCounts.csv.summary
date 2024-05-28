@@ -1,0 +1,15 @@
+Status	/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_align/0246_2_TP04_020_FC_NOR_1TR1_SL1_S20Aligned.sortedByCoord.out.bam	/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_align/0246_2_TP04_021_FC_MOD_1TR1_SL1_S21Aligned.sortedByCoord.out.bam	/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_align/0246_2_TP04_022_FC_MOD_1TR1_SL1_S22Aligned.sortedByCoord.out.bam	/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_align/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23Aligned.sortedByCoord.out.bam	/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_align/0246_2_TP04_024_FC_MOD_1TR1_SL1_S24Aligned.sortedByCoord.out.bam	/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_align/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25Aligned.sortedByCoord.out.bam	/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_align/0246_2_TP04_026_FC_MOD_1TR1_SL1_S26Aligned.sortedByCoord.out.bam
+Assigned	31671	31168	31981	31542	31488	30629	31435
+Unassigned_Unmapped	0	0	0	0	0	0	0
+Unassigned_Read_Type	0	0	0	0	0	0	0
+Unassigned_Singleton	0	0	0	0	0	0	0
+Unassigned_MappingQuality	0	0	0	0	0	0	0
+Unassigned_Chimera	0	0	0	0	0	0	0
+Unassigned_FragmentLength	0	0	0	0	0	0	0
+Unassigned_Duplicate	0	0	0	0	0	0	0
+Unassigned_MultiMapping	12040	15532	12741	13746	11700	12776	12660
+Unassigned_Secondary	0	0	0	0	0	0	0
+Unassigned_NonSplit	0	0	0	0	0	0	0
+Unassigned_NoFeatures	3527	3717	3178	3476	3696	3741	3841
+Unassigned_Overlapping_Length	0	0	0	0	0	0	0
+Unassigned_Ambiguity	994	969	904	932	933	918	907

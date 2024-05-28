@@ -1,0 +1,381 @@
+STAR version=2.7.11b
+STAR compilation time,server,dir=2024-03-19T08:38:59+0000 :/opt/conda/conda-bld/star_1710837244939/work/source
+##### Command Line:
+/home/AD/hermi/miniconda3/envs/DEGpipe01/bin/STAR-avx2 --runThreadN 8 --readFilesIn /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz --outFileNamePrefix 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25 --genomeDir /data/public/RefSeq.GRCm39/STARindexes --readFilesCommand zcat --outSAMtype BAM SortedByCoordinate --outFilterType BySJout --outFilterMultimapNmax 20 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverReadLmax 0.6 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --limitBAMsortRAM 800000000000 --outSAMmapqUnique 60 --twopassMode Basic
+##### Initial USER parameters from Command Line:
+outFileNamePrefix                 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25
+###### All USER parameters from Command Line:
+runThreadN                    8     ~RE-DEFINED
+readFilesIn                   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz        ~RE-DEFINED
+outFileNamePrefix             0246_2_TP04_025_FC_MOD_1TR1_SL1_S25     ~RE-DEFINED
+genomeDir                     /data/public/RefSeq.GRCm39/STARindexes     ~RE-DEFINED
+readFilesCommand              zcat        ~RE-DEFINED
+outSAMtype                    BAM   SortedByCoordinate        ~RE-DEFINED
+outFilterType                 BySJout     ~RE-DEFINED
+outFilterMultimapNmax         20     ~RE-DEFINED
+alignSJoverhangMin            8     ~RE-DEFINED
+alignSJDBoverhangMin          1     ~RE-DEFINED
+outFilterMismatchNmax         999     ~RE-DEFINED
+outFilterMismatchNoverReadLmax0.6     ~RE-DEFINED
+alignIntronMin                20     ~RE-DEFINED
+alignIntronMax                1000000     ~RE-DEFINED
+alignMatesGapMax              1000000     ~RE-DEFINED
+limitBAMsortRAM               800000000000     ~RE-DEFINED
+outSAMmapqUnique              60     ~RE-DEFINED
+twopassMode                   Basic     ~RE-DEFINED
+##### Finished reading parameters from all sources
+
+##### Final user re-defined parameters-----------------:
+runThreadN                        8
+genomeDir                         /data/public/RefSeq.GRCm39/STARindexes
+readFilesIn                       /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz   
+readFilesCommand                  zcat   
+limitBAMsortRAM                   800000000000
+outFileNamePrefix                 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25
+outSAMtype                        BAM   SortedByCoordinate   
+outSAMmapqUnique                  60
+outFilterType                     BySJout
+outFilterMultimapNmax             20
+outFilterMismatchNmax             999
+outFilterMismatchNoverReadLmax    0.6
+alignIntronMin                    20
+alignIntronMax                    1000000
+alignMatesGapMax                  1000000
+alignSJoverhangMin                8
+alignSJDBoverhangMin              1
+twopassMode                       Basic
+
+-------------------------------
+##### Final effective command line:
+/home/AD/hermi/miniconda3/envs/DEGpipe01/bin/STAR-avx2   --runThreadN 8   --genomeDir /data/public/RefSeq.GRCm39/STARindexes   --readFilesIn /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz      --readFilesCommand zcat      --limitBAMsortRAM 800000000000   --outFileNamePrefix 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25   --outSAMtype BAM   SortedByCoordinate      --outSAMmapqUnique 60   --outFilterType BySJout   --outFilterMultimapNmax 20   --outFilterMismatchNmax 999   --outFilterMismatchNoverReadLmax 0.6   --alignIntronMin 20   --alignIntronMax 1000000   --alignMatesGapMax 1000000   --alignSJoverhangMin 8   --alignSJDBoverhangMin 1   --twopassMode Basic
+----------------------------------------
+
+Number of fastq files for each mate = 1
+
+   Input read files for mate 1 :
+-rw-r--r-- 1 hermi domänen-benutzer 1505815 May 26 19:33 /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz
+
+   readsCommandsFile:
+exec > "0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp/tmp.fifo.read1"
+echo FILE 0
+zcat      "/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz"
+
+
+   Input read files for mate 2 :
+-rw-r--r-- 1 hermi domänen-benutzer 1553862 May 26 19:33 /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz
+
+   readsCommandsFile:
+exec > "0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp/tmp.fifo.read2"
+echo FILE 0
+zcat      "/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz"
+
+ParametersSolo: --soloCellFilterType CellRanger2.2 filtering parameters:  3000 0.99 10
+Finished loading and checking parameters
+Reading genome generation parameters:
+### STAR   --runMode genomeGenerate      --runThreadN 40   --genomeDir /data/public/RefSeq.GRCm39/STARindexes   --genomeFastaFiles /data/public/RefSeq.GRCm39/ncbi-genomes-2023-05-05/GCF_000001635.27_GRCm39_genomic.fna      --sjdbGTFfile /data/public/RefSeq.GRCm39/ncbi-genomes-2023-05-05/GCF_000001635.27_GRCm39_genomic.gtf
+### GstrandBit=32
+versionGenome                 2.7.4a     ~RE-DEFINED
+genomeType                    Full     ~RE-DEFINED
+genomeFastaFiles              /data/public/RefSeq.GRCm39/ncbi-genomes-2023-05-05/GCF_000001635.27_GRCm39_genomic.fna        ~RE-DEFINED
+genomeSAindexNbases           14     ~RE-DEFINED
+genomeChrBinNbits             18     ~RE-DEFINED
+genomeSAsparseD               1     ~RE-DEFINED
+genomeTransformType           None     ~RE-DEFINED
+genomeTransformVCF            -     ~RE-DEFINED
+sjdbOverhang                  100     ~RE-DEFINED
+sjdbFileChrStartEnd           -        ~RE-DEFINED
+sjdbGTFfile                   /data/public/RefSeq.GRCm39/ncbi-genomes-2023-05-05/GCF_000001635.27_GRCm39_genomic.gtf     ~RE-DEFINED
+sjdbGTFchrPrefix              -     ~RE-DEFINED
+sjdbGTFfeatureExon            exon     ~RE-DEFINED
+sjdbGTFtagExonParentTranscripttranscript_id     ~RE-DEFINED
+sjdbGTFtagExonParentGene      gene_id     ~RE-DEFINED
+sjdbInsertSave                Basic     ~RE-DEFINED
+genomeFileSizes               2797838556   22388916639        ~RE-DEFINED
+Genome version is compatible with current STAR
+Number of real (reference) chromosomes= 61
+1	NC_000067.7	195154279	0
+2	NT_166280.1	169725	195297280
+3	NT_166281.1	241735	195559424
+4	NT_166282.1	153618	195821568
+5	NT_162750.1	206961	196083712
+6	NW_023337852.1	8412	196345856
+7	NT_166338.1	40056	196608000
+8	NC_000068.8	181755017	196870144
+9	NC_000069.7	159745316	378798080
+10	NC_000070.7	156860686	538705920
+11	NT_187055.1	1976	695730176
+12	NC_000071.7	151758149	695992320
+13	NT_187056.1	199368	847773696
+14	NT_187057.1	205776	848035840
+15	NT_187058.1	184189	848297984
+16	NT_166438.1	195993	848560128
+17	NT_187059.1	953012	848822272
+18	NC_000072.7	149588044	849870848
+19	NC_000073.7	144995196	999555072
+20	NT_166307.1	175968	1144782848
+21	NC_000074.7	130127694	1145044992
+22	NC_000075.7	124359700	1275330560
+23	NC_000076.7	130530862	1399848960
+24	NC_000077.7	121973369	1530396672
+25	NC_000078.7	120092757	1652555776
+26	NC_000079.7	120883175	1772879872
+27	NC_000080.7	125139656	1893990400
+28	NC_000081.7	104073951	2019295232
+29	NC_000082.7	98008968	2123628544
+30	NC_000083.7	95294699	2221670400
+31	NC_000084.7	90720763	2317090816
+32	NC_000085.7	61420004	2408054784
+33	NC_000086.8	169476592	2469658624
+34	NT_165789.3	559103	2639265792
+35	NC_000087.8	91455967	2640052224
+36	NT_187060.1	182347	2731540480
+37	NT_187061.1	259875	2731802624
+38	NT_187062.1	155838	2732064768
+39	NT_187063.1	158099	2732326912
+40	NT_166451.1	42057	2732589056
+41	NT_166462.1	31602	2732851200
+42	NT_166465.1	25871	2733113344
+43	NT_166466.1	23158	2733375488
+44	NT_166467.1	38659	2733637632
+45	NT_166469.1	35240	2733899776
+46	NT_166474.1	24668	2734161920
+47	NT_166476.1	23629	2734424064
+48	NT_166478.1	24323	2734686208
+49	NT_166443.1	22974	2734948352
+50	NT_166444.1	31704	2735210496
+51	NT_166480.1	21240	2735472640
+52	NT_166456.1	28664	2735734784
+53	NT_166471.1	24685	2735996928
+54	NT_166473.1	28772	2736259072
+55	NT_166454.1	26764	2736521216
+56	NT_166463.1	72385	2736783360
+57	NT_166450.1	47073	2737045504
+58	NT_166452.1	20208	2737307648
+59	NT_187064.1	114452	2737569792
+60	NW_023337853.1	31129	2737831936
+61	NC_005089.1	16299	2738094080
+--sjdbOverhang = 100 taken from the generated genome
+Started loading the genome: Sun May 26 20:08:33 2024
+
+Genome: size given as a parameter = 2797838556
+SA: size given as a parameter = 22388916639
+SAindex: size given as a parameter = 1
+Read from SAindex: pGe.gSAindexNbases=14  nSAi=357913940
+nGenome=2797838556;  nSAbyte=22388916639
+GstrandBit=32   SA number of indices=5427616154
+Shared memory is not used for genomes. Allocated a private copy of the genome.
+Genome file size: 2797838556 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading Genome ... done! state: good=1 eof=0 fail=0 bad=0; loaded 2797838556 bytes
+SA file size: 22388916639 bytes; state: good=1 eof=0 fail=0 bad=0
+Loading SA ... done! state: good=1 eof=0 fail=0 bad=0; loaded 22388916639 bytes
+Loading SAindex ... done: 1565873619 bytes
+Finished loading the genome: Sun May 26 20:08:40 2024
+
+Processing splice junctions database sjdbN=295932,   pGe.sjdbOverhang=100 
+To accommodate alignIntronMax=1000000 redefined winBinNbits=18
+To accommodate alignIntronMax=1000000 and alignMatesGapMax=1000000, redefined winFlankNbins=4 and winAnchorDistNbins=8
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread0 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread0 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread1 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread1 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread2 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread2 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread3 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread3 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread4 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread4 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread5 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread5 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread6 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread6 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread7 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread7 ... ok
+Created thread # 1
+Created thread # 2
+Created thread # 3
+Starting to map file # 0
+mate 1:   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz
+mate 2:   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz
+Created thread # 4
+Created thread # 5
+Created thread # 6
+Created thread # 7
+Thread #1 end of input stream, nextChar=-1
+Completed: thread #2
+Completed: thread #3
+Completed: thread #4
+Completed: thread #7
+Completed: thread #0
+Completed: thread #5
+Completed: thread #6
+Completed: thread #1
+Joined thread # 1
+Joined thread # 2
+Joined thread # 3
+Joined thread # 4
+Joined thread # 5
+Joined thread # 6
+Joined thread # 7
+May 26 20:08:44   Loaded database junctions from the generated genome /data/public/RefSeq.GRCm39/STARindexes//sjdbList.out.tab: 295932 total junctions
+
+May 26 20:08:44   Loaded database junctions from the 1st pass file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARpass1//SJ.out.tab: 305086 total junctions
+
+WARNING: long repeat for junction # 5422 : NC_000067.7 64597704 64598084; left shift = 1; right shift = 255
+WARNING: long repeat for junction # 39250 : NC_000068.8 154856877 154870907; left shift = 6; right shift = 255
+WARNING: long repeat for junction # 119093 : NC_000073.7 45613862 45620563; left shift = 8; right shift = 255
+WARNING: long repeat for junction # 131267 : NC_000073.7 141224242 141226086; left shift = 255; right shift = 11
+WARNING: long repeat for junction # 153324 : NC_000075.7 55617242 55617561; left shift = 255; right shift = 14
+WARNING: long repeat for junction # 234833 : NC_000081.7 27741858 27741891; left shift = 4; right shift = 255
+WARNING: long repeat for junction # 238653 : NC_000081.7 75985898 75988980; left shift = 78; right shift = 255
+WARNING: long repeat for junction # 268142 : NC_000083.7 91340195 91340290; left shift = 255; right shift = 10
+May 26 20:08:44   Finished preparing junctions
+May 26 20:08:44 ..... inserting junctions into the genome indices
+May 26 20:08:45   Finished SA search: number of new junctions=88, old junctions=295932
+May 26 20:08:45   Finished sorting SA indicesL nInd=35200
+Genome size with junctions=2797856244  2738356224   59500020
+GstrandBit1=32   GstrandBit=32
+May 26 20:09:35   Finished inserting junction indices
+May 26 20:09:38   Finished SAi
+May 26 20:09:38 ..... finished inserting junctions into genome
+
+   Input read files for mate 1 :
+-rw-r--r-- 1 hermi domänen-benutzer 1505815 May 26 19:33 /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz
+
+   readsCommandsFile:
+exec > "0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp/tmp.fifo.read1"
+echo FILE 0
+zcat      "/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz"
+
+
+   Input read files for mate 2 :
+-rw-r--r-- 1 hermi domänen-benutzer 1553862 May 26 19:33 /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz
+
+   readsCommandsFile:
+exec > "0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp/tmp.fifo.read2"
+echo FILE 0
+zcat      "/home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz"
+
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread0 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread0 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread1 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread1 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread2 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread2 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread3 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread3 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread4 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread4 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread5 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread5 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread6 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread6 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate1.thread7 ... ok
+Opening the file: 0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_STARtmp//FilterBySJoutFiles.mate2.thread7 ... ok
+Created thread # 1
+Created thread # 2
+Created thread # 3
+Created thread # 4
+Starting to map file # 0
+mate 1:   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R1_qc.fq.gz
+mate 2:   /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_025_FC_MOD_1TR1_SL1_S25_R2_qc.fq.gz
+Created thread # 5
+Created thread # 6
+Created thread # 7
+Thread #1 end of input stream, nextChar=-1
+Completed: thread #3
+Completed: thread #2
+Completed: thread #4
+Completed: thread #5
+Completed: thread #6
+Completed: thread #0
+Completed: thread #7
+Completed: thread #1
+Joined thread # 1
+Joined thread # 2
+Joined thread # 3
+Joined thread # 4
+Joined thread # 5
+Joined thread # 6
+Joined thread # 7
+Completed stage 1 mapping of outFilterBySJout mapping
+Detected 4 novel junctions that passed filtering, will proceed to filter reads that contained unannotated junctions
+Created thread # 1
+Created thread # 2
+Created thread # 3
+Created thread # 4
+Created thread # 5
+Created thread # 6
+Created thread # 7
+Completed: thread #5
+Completed: thread #7
+Completed: thread #6
+Completed: thread #3
+Completed: thread #0
+Completed: thread #4
+Completed: thread #2
+BAM sorting: 48064 mapped reads
+BAM sorting bins genomic start loci:
+1	0	64639406
+2	0	150140685
+3	0	183135325
+4	7	29928317
+5	7	79159968
+6	7	150665905
+7	8	39601195
+8	8	122323248
+9	9	95144516
+10	9	129742383
+11	11	23908221
+12	11	45839198
+13	11	115698940
+14	11	140428834
+15	17	48815166
+16	17	125138899
+17	18	27169630
+18	18	63783954
+19	18	127577397
+20	20	69263378
+21	20	107763828
+22	20	124153851
+23	21	10193963
+24	21	62760047
+25	21	100379623
+26	22	25778276
+27	22	79698279
+28	22	116894048
+29	23	8876649
+30	23	54870126
+31	23	78072388
+32	23	102290474
+33	23	120703581
+34	24	103380114
+35	25	99124166
+36	26	55145717
+37	27	22755863
+38	27	76446470
+39	27	98026091
+40	28	33827694
+41	28	93500011
+42	29	32908487
+43	29	56920660
+44	30	46742817
+45	30	82719107
+46	31	60853133
+47	32	100486939
+48	59	421
+Completed: thread #1
+Joined thread # 1
+Joined thread # 2
+Joined thread # 3
+Joined thread # 4
+Joined thread # 5
+Joined thread # 6
+Joined thread # 7
+May 26 20:09:42 ..... finished mapping
+RAM after mapping:
+VmPeak:	31791448 kB; VmSize:	30880668 kB; VmHWM:	30715812 kB; VmRSS:	29663832 kB; 
+RAM after freeing genome index memory:
+VmPeak:	31791448 kB; VmSize:	 2939372 kB; VmHWM:	30715812 kB; VmRSS:	 1917972 kB; 
+May 26 20:09:42 ..... started sorting BAM
+Max memory needed for sorting = 352311
+ALL DONE!

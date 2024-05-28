@@ -1,0 +1,11 @@
+	/home/AD/hermi/miniconda3/envs/DEGpipe01/bin/STAR-avx2 --runThreadN 8 --readFilesIn /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_R1_qc.fq.gz /home/AD/hermi/sm_tutorial/BYOC/testrun/240526_qcFastq/0246_2_TP04_023_FC_MOD_1TR1_SL1_S23_R2_qc.fq.gz --outFileNamePrefix 0246_2_TP04_023_FC_MOD_1TR1_SL1_S23 --genomeDir /data/public/RefSeq.GRCm39/STARindexes --readFilesCommand zcat --outSAMtype BAM SortedByCoordinate --outFilterType BySJout --outFilterMultimapNmax 20 --alignSJoverhangMin 8 --alignSJDBoverhangMin 1 --outFilterMismatchNmax 999 --outFilterMismatchNoverReadLmax 0.6 --alignIntronMin 20 --alignIntronMax 1000000 --alignMatesGapMax 1000000 --limitBAMsortRAM 800000000000 --outSAMmapqUnique 60 --twopassMode Basic
+	STAR version: 2.7.11b   compiled: 2024-03-19T08:38:59+0000 :/opt/conda/conda-bld/star_1710837244939/work/source
+May 26 20:06:12 ..... started STAR run
+May 26 20:06:12 ..... loading genome
+May 26 20:06:20 ..... started 1st pass mapping
+May 26 20:06:23 ..... finished 1st pass mapping
+May 26 20:06:23 ..... inserting junctions into the genome indices
+May 26 20:07:17 ..... started mapping
+May 26 20:07:21 ..... finished mapping
+May 26 20:07:21 ..... started sorting BAM
+May 26 20:07:22 ..... finished successfully

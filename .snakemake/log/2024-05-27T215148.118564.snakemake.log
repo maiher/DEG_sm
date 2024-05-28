@@ -1,0 +1,18 @@
+Building DAG of jobs...
+MissingInputException in rule all in file /data/home/AD/hermi/sm_tutorial/BYOC/workflow/Snakefile_fastp_fromList.smk, line 23:
+Missing input files for rule all:
+    affected files:
+        myData/246_2_TP04_022_FC_MOD_1TR1_SL1_S22_L002_R1_001_50k_fastq.gz
+        myData/246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R1_001_50k_fastq.gz
+        myData/246_2_TP04_022_FC_MOD_1TR1_SL1_S22_L002_R2_001_50k_fastq.gz
+        myData/246_2_TP04_024_FC_MOD_1TR1_SL1_S24_L002_R2_001_50k_fastq.gz
+        myData/246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R2_001_50k_fastq.gz
+        myData/246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R2_001_50k_fastq.gz
+        myData/246_2_TP04_020_FC_NOR_1TR1_SL1_S20_L002_R2_001_50k_fastq.gz
+        myData/246_2_TP04_020_FC_NOR_1TR1_SL1_S20_L002_R1_001_50k_fastq.gz
+        myData/246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R1_001_50k_fastq.gz
+        myData/246_2_TP04_025_FC_MOD_1TR1_SL1_S25_L002_R2_001_50k_fastq.gz
+        myData/246_2_TP04_021_FC_MOD_1TR1_SL1_S21_L002_R1_001_50k_fastq.gz
+        myData/246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R1_001_50k_fastq.gz
+        myData/246_2_TP04_023_FC_MOD_1TR1_SL1_S23_L002_R1_001_50k_fastq.gz
+        myData/246_2_TP04_026_FC_MOD_1TR1_SL1_S26_L002_R2_001_50k_fastq.gz

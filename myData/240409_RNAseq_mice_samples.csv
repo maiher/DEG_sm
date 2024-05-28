@@ -1,0 +1,8 @@
+Customer ID	MedGen LIB ID	batch	replicate	condition	clone	group	celltype
+GL261_AF_2_3_Batch1	0246_2_TP04_022_FC_MOD_1TR1_SL1	1	1	mutation_1	AF_2_3	Off target control	GL261_mouse_glioblastoma
+GL261_AF_2_8_Batch1	0246_2_TP04_024_FC_MOD_1TR1_SL1	1	1	mutation_1	AF_2_8	Off target control	GL261_mouse_glioblastoma
+GL261_AF_2_15_Batch1	0246_2_TP04_025_FC_MOD_1TR1_SL1	1	1	mutation_1	AF_2_15	Off target control	GL261_mouse_glioblastoma
+GL261_AF_1_5_Batch1	0246_2_TP04_021_FC_MOD_1TR1_SL1	1	1	mutation_2	AF_1_5	SAMHD1_KO	GL261_mouse_glioblastoma
+GL261_AF_2_7_Batch1	0246_2_TP04_023_FC_MOD_1TR1_SL1	1	1	mutation_2	AF_2_7	SAMHD1_KO	GL261_mouse_glioblastoma
+GL261_AF_3_23_Batch1	0246_2_TP04_026_FC_MOD_1TR1_SL1	1	1	mutation_2	AF_3_23	SAMHD1_KO	GL261_mouse_glioblastoma
+GL261_WT_Batch 1	0246_2_TP04_020_FC_NOR_1TR1_SL1	1	1	WT	WT	WT	GL261_mouse_glioblastoma
